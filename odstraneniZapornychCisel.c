@@ -3,7 +3,7 @@
 
 int odfiltruj_zaporna(int **pole, int *delka){
 
-    if (pole == NULL || *delka <= 0 || delka == NULL)
+    if (pole == NULL || *pole == NULL || delka == NULL || *delka <= 0)
         return 0;
 
     int delkaTemp = 0;
@@ -18,8 +18,10 @@ int odfiltruj_zaporna(int **pole, int *delka){
     *delka = *delka - delkaTemp;
     if (*delka < 0)
         return 0;
-    else if (*delka == 0)
+    else if (*delka == 0){
         printf("Pole je prazdne.\n");
+        return 2;
+    }
 
     int *temp = realloc(*pole, *delka * sizeof(**pole));
     if (temp == NULL)
@@ -55,7 +57,9 @@ int main(void){
         }
     }
 
-    if (odfiltruj_zaporna(&pole, &delka) == 1){
+    int nacteni = odfiltruj_zaporna(&pole, &delka);
+
+    if (nacteni == 1){
         printf("Filtrovane pole:\n");
         for (int i = 0; i < delka; i++){
             if (i < delka - 1)
@@ -65,7 +69,7 @@ int main(void){
         }
         free(pole);
     }
-    else if (odfiltruj_zaporna(&pole, &delka) == 2)
+    else if (nacteni == 2)
         free(pole);
     else {
         printf("Nespravny vstup.\n");

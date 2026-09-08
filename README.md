@@ -34,6 +34,6 @@ Zadejte pocet prvku:
 6
 Zadejte prvky:
 4 -2 7 -8 0 5
-Pole po odstraneni zapornych cisel:
+Filtrovane pole:
 4 7 0 5
 ```
